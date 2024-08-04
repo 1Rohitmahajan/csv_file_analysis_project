@@ -1,0 +1,87 @@
+{% extends "events/base.html" %}
+
+{% block body %}
+<div class="container upload-page m-5 p-5 ">
+    <h2>Upload CSV File</h2>
+
+    <div class="info-box">
+        <h3>Instructions</h3>
+        <p>Ensure that your CSV file meets the following requirements:</p>
+        <ul>
+            <li>File format: .csv</li>
+            <li>Header row included</li>
+            <li>No missing values in critical columns</li>
+        </ul>
+    </div>
+
+    <div class="info-box">
+        <h3>Tips for Preparing Your CSV</h3>
+        <p>Follow these tips to ensure smooth data processing:</p>
+        <ul>
+            <li>Check for and remove any duplicate rows.</li>
+            <li>Standardize the date format.</li>
+            <li>Ensure consistency in categorical data entries.</li>
+        </ul>
+    </div>
+
+    <div class="form-section">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="file-upload-container">
+                {{ form.file.label_tag }}
+                {{ form.file }}
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+            <p class="note">Please make sure your file is in CSV format.</p>
+        </form>
+    </div>
+</div>
+
+<style>
+    .upload-page {
+        background-color: #f8f9fa;
+    }
+    .upload-page h2 {
+        color: #343a40;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .upload-page .info-box {
+        background-color: #e9ecef;
+        border-radius: 8px;
+        padding: 8px;
+        margin-top: 20px;
+        box-shadow: 0 2.5px 4.5px rgba(0, 0, 0, 0.1);
+    }
+    .upload-page .info-box h3 {
+        margin-top: ;
+    }
+    .upload-page .form-section {
+        text-align: center;
+        margin-top:15px;
+    }
+    .file-upload-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .file-upload-container input[type="file"] {
+        border: 1.5px solid #ced4da;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .upload-page .btn-primary {
+        padding: 7px 15px;
+        font-size: 17px;
+        font-weight: 600;
+        border-radius: 5px;
+    }
+    .upload-page .note {
+        font-size: 14px;
+        color: #6c757d;
+        margin-top: 15px;
+    }
+</style>
+{% endblock body %}

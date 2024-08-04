@@ -1,0 +1,48 @@
+{% extends 'events/base.html'%}
+{%block title%} contact {% endblock title%}
+{% block body %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="container-fluid px-0 mb-3">
+    <img src="https://source.unsplash.com/1000x300/?phone,contact" class="d-block w-100  mx-0" alt="...">
+
+
+</div>
+
+
+<div class="container  py-4 mb-3 ">
+    <h1 class="text-center">Contact Us</h1>
+    <form method="post" action="/contact1">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <label for="name">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name ">
+
+        </div>
+        <div class="form-group">
+
+            <label for="phone">Phone Number</label>
+            <input type="phone" name="phone" class="form-control" id="phone" placeholder="Enter your phone number">
+
+        </div>
+        <div class="form-group">
+
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter your email">
+
+        </div>
+        <div class="form-group">
+            <label for="desc">Tell me about what you want to contact me for...</label>
+            <textarea class="form-control" id="desc" rows="3" name="desc"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+</div>
+{% endblock body %}

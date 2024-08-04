@@ -1,0 +1,216 @@
+{% extends "events/base.html" %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h4 {
+            display: flex;
+            justify-content: center;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .analysis-card {
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+        .analysis-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .analysis-icon {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .bg-light-custom {
+            background-color: #f8f9fa;
+        }
+        .custom-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .custom-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .custom-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .hero-section {
+            background: skyblue;
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: black;
+            text-align: center;
+        }
+        .stats-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .centered-container {
+            display: flex;
+            margin-top: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background-color: #f8f9fa;
+        }
+        .border {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .border .btn-primary {
+            padding: 16px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-section gradient-bg">
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Get a comprehensive overview of your data and manage your files efficiently.</p>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Files Uploaded</h5>
+                        <p class="card-text">100</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Approvals</h5>
+                        <p class="card-text">5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Recent Activities</h5>
+                        <p class="card-text">10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="centered-container">
+            <div class="border">
+                <h4>First, Login. Then upload your CSV file here.</h4>
+
+                <div class="mt-4 p-5">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary p-3">Upload New File</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h2>Our Analysis Patterns</h2>
+            <p>Discover how our website can help you analyze your CSV files effectively.</p>
+            <div class="row">
+                <!-- Analysis Pattern 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="analysis-card text-center">
+                        <div class="analysis-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Trend Analysis</h4>
+                        <p>Visualize and analyze trends in your data to gain valuable insights into patterns and behaviors.</p>
+                    </div>
+                </div>
+                <!-- Analysis Pattern 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="analysis-card text-center">
+                        <div class="analysis-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Data Aggregation</h4>
+                        <p>Aggregate and summarize large datasets to extract meaningful statistics and metrics.</p>
+                    </div>
+                </div>
+                <!-- Analysis Pattern 3 -->
+                <div class="col-md-6 mb-4">
+                    <div class="analysis-card text-center">
+                        <div class="analysis-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>Distribution Analysis</h4>
+                        <p>Understand the distribution of data across different categories or ranges.</p>
+                    </div>
+                </div>
+                <!-- Analysis Pattern 4 -->
+                <div class="col-md-6 mb-4">
+                    <div class="analysis-card text-center">
+                        <div class="analysis-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <h4>Data Filtering</h4>
+                        <p>Filter and clean data to focus on relevant subsets for detailed analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 bg-light-custom">
+            <div class="col-md-6">
+                <div class="custom-card">
+                    <img src="https://via.placeholder.com/500x300" alt="Feature Image">
+                    <h3>Feature Spotlight</h3>
+                    <p>Learn more about our unique features and how they can enhance your data analysis experience.</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="custom-card">
+                    <img src="https://via.placeholder.com/500x300" alt="Feature Image">
+                    <h3>Customer Testimonials</h3>
+                    <p>Read what our customers have to say about their experience with our platform.</p>
+                    <a href="#" class="btn btn-primary">Read Testimonials</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock body %}
