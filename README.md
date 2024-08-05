@@ -18,9 +18,28 @@ This project allows users to upload CSV files and process them for data analysis
 ## Features
 
 - User authentication (signup, login, logout)
+- ![image](https://github.com/user-attachments/assets/6b8f59a8-bdf7-4005-9046-154a83f2f07b)
+
 - File upload and validation
+- ![image](https://github.com/user-attachments/assets/0d59d2d3-4f3b-4c6a-b4ff-71be42443365)
+
 - Data analysis on uploaded CSV files
+
+- ![image](https://github.com/user-attachments/assets/a490e946-32e1-472c-8772-095c1aafa577)
+
+- 
 - Display results of data analysis
+
+
+![image](https://github.com/user-attachments/assets/8bd2627e-63b1-4631-a81c-a08284a2e818)
+
+
+![image](https://github.com/user-attachments/assets/308a7970-c6b1-49ef-a44a-d76340d8e1cc)
+
+
+![image](https://github.com/user-attachments/assets/c8f5f722-70ce-4647-8d76-f8e4ad306e55)
+
+
 
 ## Requirements
 
