@@ -138,8 +138,8 @@
                 <h4>First, Login. Then upload your CSV file here.</h4>
 
                 <div class="mt-4 p-5">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
+                    {% if request.session.new_user %}
+                    <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-primary p-3">Upload New File</a>
                     {% endif %}

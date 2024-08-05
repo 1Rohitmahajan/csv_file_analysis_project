@@ -136,19 +136,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
+     {% if request.session.new_user %}
+        
 
-                {% if not user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Register & Login</a>
-                </li>
-                {% endif%}
+        <li class="nav-item ">
+          <a class="nav-link" href="{% url 'logout' %}">Logout<span class="sr-only">(current)</span></a>
+        </li>
+    {% else %}
+       
+        <li class="nav-item ">
+          <a class="nav-link"href="{% url 'signup' %}">Signup<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="{% url 'login' %}">Login<span class="sr-only">(current)</span></a>
+        </li>
+    {% endif %}
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link"
                     
-                    {% if user.is_authenticated%}
-                     href="{% url 'upload' %}"
+                    {% if request.session.new_user %}
+                    href="{% url 'upload' %}"
                      {% else  %}
                      href="{% url 'login' %} "
 
@@ -161,7 +170,7 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            {% if user.is_authenticated %}
+            {% if request.session.new_user %}
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button" data-bs-toggle="dropdown">
