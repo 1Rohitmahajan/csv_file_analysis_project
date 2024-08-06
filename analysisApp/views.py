@@ -57,6 +57,9 @@ def get_plot(data):
     buffer.close()
     return base64.b64encode(image_png).decode('utf-8')
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
