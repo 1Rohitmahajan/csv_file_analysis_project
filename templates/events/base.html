@@ -136,7 +136,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Contact Us</a>
                 </li>
-     {% if request.session.new_user %}
+        {% if request.session.new_user or user.is_authenticated %}
         
 
         <li class="nav-item ">
@@ -156,7 +156,7 @@
                 <li class="nav-item">
                     <a class="nav-link"
                     
-                    {% if request.session.new_user %}
+                    {% if request.session.new_user or user.is_authenticated %}
                     href="{% url 'upload' %}"
                      {% else  %}
                      href="{% url 'login' %} "
@@ -170,13 +170,19 @@
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-            {% if request.session.new_user %}
+        {% if request.session.new_user or user.is_authenticated %}
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                         Welcome {{ request.user.username }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <form method="post" action="{% url 'admin:index' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">admin</button>
+                            </form>
+                        </li>
                         <li>
                             <form method="post" action="{% url 'logout' %}">
                                 {% csrf_token %}

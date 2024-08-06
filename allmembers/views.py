@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 from django.views import View
 from allmembers.models import New_User
+from django.contrib import messages
 
 class Signup(View):
     return_url = None

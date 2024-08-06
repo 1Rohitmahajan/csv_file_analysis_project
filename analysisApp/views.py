@@ -1,3 +1,5 @@
+import datetime
+from django.contrib import messages
 from django.shortcuts import render,HttpResponse
 from .forms import UploadFileForm
 import pandas as pd
@@ -8,6 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import base64
 from io import BytesIO
+from analysisApp.models import Contact
 
 # Create your views here.
 def index(request):
@@ -18,6 +21,18 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+         
+        desc = request.POST.get('desc')
+
+        contact1 = Contact(name=name, email=email, phone=phone,
+                        desc=desc)
+        contact1.save()
+        messages.success(request, 'Your request send successfully')
+
     return render(request, 'contact.html')
 
 def services(request):
