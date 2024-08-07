@@ -22,9 +22,14 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+
 artifacts:
   files:
     - '**/*'
   base-directory: base_location
   name: dev-backend-build-artifact
   discard-paths: no
+
+cache:
+  paths:
+    - '/root/.cache/pip'
