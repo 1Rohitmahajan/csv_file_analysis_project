@@ -25,3 +25,6 @@ phases:
 artifacts:
   files:
     - '**/*'
+  base-directory: base_location
+  name: dev-backend-build-artifact
+  discard-paths: no
