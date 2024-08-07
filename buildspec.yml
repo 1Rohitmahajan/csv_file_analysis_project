@@ -26,7 +26,7 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: base_location
+  base-directory: csv_file_analysis_project
   name: dev-backend-build-artifact
   discard-paths: no
 
