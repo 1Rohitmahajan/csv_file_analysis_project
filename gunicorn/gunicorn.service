@@ -2,12 +2,15 @@
 Description=gunicorn daemon
 Requires=gunicorn.socket
 After=network.target
+
 [Service]
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/csv_file_analysis_project
-ExecStart=/home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/csv_file_analysis_project/csv_file_analysis_project/csv_file_analysis_project.sock csv_file_analysis_project.wsgi:application
-
-       
+ExecStart=/home/ubuntu/csv_file_analysis_project/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          csv_file_analysis_project.wsgi:application
 [Install]
 WantedBy=multi-user.target

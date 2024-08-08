@@ -1,21 +1,31 @@
-#!/usr/bin/bash 
+#!/usr/bin/env bash
+set -e
 
-sed -i 's/\[]/\["52.86.158.121"]/' /home/ubuntu/csv_file_analysis_project/csv_file_analysis_project/settings.py
+PROJECT_MAIN_DIR_NAME="csv_file_analysis_project"
 
-python manage.py migrate 
-python manage.py makemigrations     
-python manage.py collectstatic
+# Validate variables
+if [ -z "$PROJECT_MAIN_DIR_NAME" ]; then
+    echo "Error: PROJECT_MAIN_DIR_NAME is not set. Please set it to your project directory name." >&2
+    exit 1
+fi
+
+# Change ownership to ubuntu user
+sudo chown -R ubuntu:ubuntu "/home/ubuntu/$PROJECT_MAIN_DIR_NAME"
+
+# Change directory to the project main directory
+cd "/home/ubuntu/$PROJECT_MAIN_DIR_NAME"
+
+# Activate virtual environment
+echo "Activating virtual environment..."
+source "/home/ubuntu/$PROJECT_MAIN_DIR_NAME/venv/bin/activate"
+
+# Run collectstatic command
+echo "Running collectstatic command..."
+python manage.py collectstatic --noinput
+
+# Restart Gunicorn and Nginx services
+echo "Restarting Gunicorn and Nginx services..."
 sudo service gunicorn restart
 sudo service nginx restart
-#sudo tail -f /var/log/nginx/error.log
-#sudo systemctl reload nginx
-#sudo tail -f /var/log/nginx/error.log
-#sudo nginx -t
-#sudo systemctl restart gunicorn
-#sudo systemctl status gunicorn
-#sudo systemctl status nginx
-# Check the status
-#systemctl status gunicorn
-# Restart:
-#systemctl restart gunicorn
-#sudo systemctl status nginx
+
+echo "Application started successfully."

@@ -1,6 +1,0 @@
-.gradient-bg {
-    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Adjust colors as needed */
-    border-radius: 10px; /* Optional: for rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional: for a subtle shadow */
-    padding: 20px; /* Adjust padding as needed */
-}
