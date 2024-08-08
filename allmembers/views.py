@@ -39,13 +39,13 @@ class Signup(View):
             print(first_name, last_name, phone, email, password)
             user.password = make_password(user.password)
             user.register()
-            return redirect('index')
+            return render(request, 'authenticate/login.html')        
         else:
             data = {
                 'error': error_message,
                 'values': value
             }
-            return render(request, 'anthenticate/signup.html', data)
+            return render(request, 'authenticate/signup.html', data)
 
     def validateCustomer(self, customer):
         error_message = None
@@ -90,7 +90,7 @@ class Loginuser(View):
                     return HttpResponseRedirect(Loginuser.return_url)
                 else:
                     Loginuser.return_url = None
-                    return redirect('index')
+                    return redirect('upload')
             else:
                 error_message = 'Email or Password invalid !!'
         else:

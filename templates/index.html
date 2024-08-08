@@ -1,131 +1,36 @@
 {% extends "events/base.html" %}
 
+{% block title %}Dashboard{% endblock %}
+
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        h4 {
-            display: flex;
-            justify-content: center;
-        }
-        .navbar-brand, .navbar-nav .nav-link {
-            color: white !important;
-        }
-        .analysis-card {
-            background: linear-gradient(to right, #e0eafc, #cfdef3);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            height: 100%;
-        }
-        .analysis-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .analysis-icon {
-            font-size: 40px;
-            color: #007bff;
-            margin-bottom: 15px;
-        }
-        .section-title {
-            margin-bottom: 30px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #343a40;
-        }
-        .bg-light-custom {
-            background-color: #f8f9fa;
-        }
-        .custom-card {
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .custom-card:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .custom-card img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .hero-section {
-            background: skyblue;
-            color: white;
-            padding: 40px 20px;
-            border-radius: 10px;
-            box-shadow: black;
-            text-align: center;
-        }
-        .stats-card {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .centered-container {
-            display: flex;
-            margin-top: 10px;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-            background-color: #f8f9fa;
-        }
-        .border {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .border .btn-primary {
-            padding: 16px;
-            width: 100%;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="hero-section gradient-bg">
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <div class="hero-section gradient-bg text-white text-center py-5 px-3 rounded">
             <h1>Welcome to Your Dashboard</h1>
-            <p>Get a comprehensive overview of your data and manage your files efficiently.</p>
+            <h5>Get a comprehensive overview of your data and manage your files efficiently.</h5>
         </div>
 
+        <!-- Stats Cards -->
         <div class="row mt-4">
             <div class="col-md-4 mb-4">
-                <div class="card stats-card">
-                    <div class="card-body">
+                <div class="card stats-card shadow-sm border-0">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Total Files Uploaded</h5>
                         <p class="card-text">100</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card stats-card">
-                    <div class="card-body">
+                <div class="card stats-card shadow-sm border-0">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Pending Approvals</h5>
                         <p class="card-text">5</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card stats-card">
-                    <div class="card-body">
+                <div class="card stats-card shadow-sm border-0">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Recent Activities</h5>
                         <p class="card-text">10</p>
                     </div>
@@ -133,28 +38,29 @@
             </div>
         </div>
 
-        <div class="centered-container">
-            <div class="border">
-                <h4>First, Login. Then upload your CSV file here.</h4>
-
-                <div class="mt-4 p-5">
+        <!-- Upload Section -->
+        <div class="centered-container mb-5">
+            <div class="border p-4 shadow-lg rounded">
+                <h4 class="text-center">First, Login. Then upload your CSV file here.</h4>
+                <div class="text-center mt-4">
                     {% if request.session.new_user or user.is_authenticated %}
-                    <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
+                        <a href="{% url 'upload' %}" class="btn btn-primary">Upload New File</a>
                     {% else %}
-                        <a href="{% url 'login' %}" class="btn btn-primary p-3">Upload New File</a>
+                        <a href="{% url 'login' %}" class="btn btn-primary">Login to Upload File</a>
                     {% endif %}
                 </div>
             </div>
         </div>
 
+        <!-- Analysis Patterns -->
         <div class="mt-4">
-            <h2>Our Analysis Patterns</h2>
-            <p>Discover how our website can help you analyze your CSV files effectively.</p>
+            <h2 class="text-center text-primary">Our Analysis Patterns</h2>
+            <p class="text-center text-muted">Discover how our website can help you analyze your CSV files effectively.</p>
             <div class="row">
                 <!-- Analysis Pattern 1 -->
                 <div class="col-md-6 mb-4">
-                    <div class="analysis-card text-center">
-                        <div class="analysis-icon">
+                    <div class="analysis-card text-center shadow-lg border-0">
+                        <div class="analysis-icon mb-3">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h4>Trend Analysis</h4>
@@ -163,8 +69,8 @@
                 </div>
                 <!-- Analysis Pattern 2 -->
                 <div class="col-md-6 mb-4">
-                    <div class="analysis-card text-center">
-                        <div class="analysis-icon">
+                    <div class="analysis-card text-center shadow-lg border-0">
+                        <div class="analysis-icon mb-3">
                             <i class="fas fa-database"></i>
                         </div>
                         <h4>Data Aggregation</h4>
@@ -173,8 +79,8 @@
                 </div>
                 <!-- Analysis Pattern 3 -->
                 <div class="col-md-6 mb-4">
-                    <div class="analysis-card text-center">
-                        <div class="analysis-icon">
+                    <div class="analysis-card text-center shadow-lg border-0">
+                        <div class="analysis-icon mb-3">
                             <i class="fas fa-chart-pie"></i>
                         </div>
                         <h4>Distribution Analysis</h4>
@@ -183,8 +89,8 @@
                 </div>
                 <!-- Analysis Pattern 4 -->
                 <div class="col-md-6 mb-4">
-                    <div class="analysis-card text-center">
-                        <div class="analysis-icon">
+                    <div class="analysis-card text-center shadow-lg border-0">
+                        <div class="analysis-icon mb-3">
                             <i class="fas fa-filter"></i>
                         </div>
                         <h4>Data Filtering</h4>
@@ -194,23 +100,167 @@
             </div>
         </div>
 
-        <div class="row mt-5 bg-light-custom">
-            <div class="col-md-6">
-                <div class="custom-card">
-                    <img src="https://via.placeholder.com/500x300" alt="Feature Image">
-                    <h3>Feature Spotlight</h3>
-                    <p>Learn more about our unique features and how they can enhance your data analysis experience.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+        <!-- Machine Learning Lifecycle -->
+        <div class="mt-5">
+            <h2 class="text-center text-primary">Machine Learning Lifecycle</h2>
+            <p class="text-center text-muted">Explore the stages of the machine learning lifecycle and how our system supports each phase.</p>
+            <div class="row">
+                <!-- Stage 1: Data Collection -->
+                <div class="col-md-6 mb-4">
+                    <div class="ml-card text-center shadow-lg border-0">
+                        <div class="ml-icon mb-3">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Data Collection</h4>
+                        <p>Gather data from various sources to build a robust dataset for training your models.</p>
+                    </div>
+                </div>
+                <!-- Stage 2: Data Preprocessing -->
+                <div class="col-md-6 mb-4">
+                    <div class="ml-card text-center shadow-lg border-0">
+                        <div class="ml-icon mb-3">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Data Preprocessing</h4>
+                        <p>Clean and transform raw data into a format suitable for model training.</p>
+                    </div>
+                </div>
+                <!-- Stage 3: Model Training -->
+                <div class="col-md-6 mb-4">
+                    <div class="ml-card text-center shadow-lg border-0">
+                        <div class="ml-icon mb-3">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>Model Training</h4>
+                        <p>Train machine learning models on the preprocessed data to learn patterns and make predictions.</p>
+                    </div>
+                </div>
+                <!-- Stage 4: Model Evaluation -->
+                <div class="col-md-6 mb-4">
+                    <div class="ml-card text-center shadow-lg border-0">
+                        <div class="ml-icon mb-3">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h4>Model Evaluation</h4>
+                        <p>Assess the performance of trained models using metrics and validation techniques.</p>
+                    </div>
+                </div>
+                <!-- Stage 5: Deployment -->
+                <div class="col-md-6 mb-4">
+                    <div class="ml-card text-center shadow-lg border-0">
+                        <div class="ml-icon mb-3">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Deployment</h4>
+                        <p>Deploy models to production environments and integrate them into applications.</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="custom-card">
-                    <img src="https://via.placeholder.com/500x300" alt="Feature Image">
-                    <h3>Customer Testimonials</h3>
-                    <p>Read what our customers have to say about their experience with our platform.</p>
-                    <a href="#" class="btn btn-primary">Read Testimonials</a>
+        </div>
+
+        <!-- Featured Sections -->
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <div class="custom-card shadow-lg rounded">
+                    <img src="https://media.istockphoto.com/id/1363479101/photo/kpi-data-predictive-analytics-dashboard.jpg?s=1024x1024&w=is&k=20&c=vdeAnOKAgEddIMScq8G4KpoNvoVYOl-69-n8vLJciGY=" alt="Feature Spotlight" class="img-fluid rounded-top">
+                    <div class="p-3">
+                        <h3 class="text-primary">Feature Spotlight</h3>
+                        <p>Learn more about our unique features and how they can enhance your data analysis experience.</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="custom-card shadow-lg rounded">
+                    <img src="https://media.istockphoto.com/id/1462651834/photo/analyst-working-with-computer-in-business-analytics-and-data-management-system-to-make-report.jpg?s=1024x1024&w=is&k=20&c=KkLVemIqAlfqklfvNUEZh8kyu177O98BE01ujLuoWDw=" alt="Customer Testimonials" class="img-fluid rounded-top">
+                    <div class="p-3">
+                        <h3 class="text-primary">Customer Testimonials</h3>
+                        <p>Read what our customers have to say about their experience with our platform.</p>
+                        <a href="#" class="btn btn-primary">Read Testimonials</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock body %}
+
+    <!-- Bootstrap JS and FontAwesome for Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+{% endblock %}
+
+{% block css %}
+<style>
+    body {
+        background-color: #f4f7f9;
+    }
+    .hero-section {
+        background: linear-gradient(455deg, #ff7e5f, #feb47b, #6a82fb, #fc5c7d);
+        color: #feb47b;
+        
+    }
+    .stats-card {
+        background: #ffffff;
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+    .analysis-card {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid #007bff;
+    }
+    .analysis-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .analysis-icon {
+        font-size: 40px;
+        color: #007bff;
+    }
+    .ml-card {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid #28a745;
+    }
+    .ml-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .ml-icon {
+        font-size: 40px;
+        color: #28a745;
+    }
+    .custom-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .border {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+</style>
+{% endblock %}

@@ -59,7 +59,7 @@ def get_plot(data):
 
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def upload_file(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
