@@ -14,6 +14,13 @@
                     {{ error }}
                 </div>
             {% endif %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
             <form action="{% url 'login' %}" method="post" onsubmit="return validateForm()">
                 {% csrf_token %}

@@ -33,12 +33,13 @@ class Signup(View):
                         phone=phone,
                         email=email,
                         password=password)
-        error_message = self.validateCustomer(user)
+        error_message = self.validateUser(user)
 
         if not error_message:
             print(first_name, last_name, phone, email, password)
             user.password = make_password(user.password)
             user.register()
+            messages.success(request, 'Signup successful! Please log in.')
             return render(request, 'authenticate/login.html')        
         else:
             data = {
@@ -47,25 +48,25 @@ class Signup(View):
             }
             return render(request, 'authenticate/signup.html', data)
 
-    def validateCustomer(self, customer):
+    def validateUser(self, user):
         error_message = None
-        if not customer.first_name:
+        if not user.first_name:
             error_message = "First Name Required !!"
-        elif len(customer.first_name) < 4:
+        elif len(user.first_name) < 4:
             error_message = 'First Name must be 4 characters long or more'
-        elif not customer.last_name:
+        elif not user.last_name:
             error_message = 'Last Name Required'
-        elif len(customer.last_name) < 4:
+        elif len(user.last_name) < 4:
             error_message = 'Last Name must be 4 characters long or more'
-        elif not customer.phone:
+        elif not user.phone:
             error_message = 'Phone Number required'
-        elif len(customer.phone) < 10:
+        elif len(user.phone) < 10:
             error_message = 'Phone Number must be 10 characters long'
-        elif len(customer.password) < 6:
+        elif len(user.password) < 6:
             error_message = 'Password must be 6 characters long'
-        elif len(customer.email) < 5:
+        elif len(user.email) < 5:
             error_message = 'Email must be 5 characters long'
-        elif customer.isExists():
+        elif user.isExists():
             error_message = 'Email Address Already Registered..'
         return error_message
 
@@ -85,7 +86,8 @@ class Loginuser(View):
             flag = check_password(password, user.password)
             if flag:
                 request.session['new_user'] = user.id
-
+                
+                messages.success(request, 'Login successful! Welcome back.')
                 if Loginuser.return_url:
                     return HttpResponseRedirect(Loginuser.return_url)
                 else:

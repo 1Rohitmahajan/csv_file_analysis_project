@@ -8,11 +8,17 @@
             <div class="text-center mb-4">
                 <h1 class="h3 font-weight-normal">Signup</h1>
             </div>
-
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
             {% if messages %}
                 <div class="alert alert-danger" role="alert">
+                    
                     {% for message in messages %}
-                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                        {{ message }}
                     {% endfor %}
                 </div>
             {% endif %}
